@@ -62,7 +62,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="final_report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="final_report_files/libs/clipboard/clipboard.min.js"></script>
 <script src="final_report_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="final_report_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="final_report_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -74,6 +74,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="final_report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="final_report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="final_report_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -97,9 +100,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">3</span> Data Analysis</a>
   <ul class="collapse">
-  <li><a href="#enrollment-trends-over-time-2000-2020" id="toc-enrollment-trends-over-time-2000-2020" class="nav-link" data-scroll-target="#enrollment-trends-over-time-2000-2020"><span class="header-section-number">3.1</span> Enrollment Trends over Time 2000-2020</a></li>
-  <li><a href="#regional-convergence" id="toc-regional-convergence" class="nav-link" data-scroll-target="#regional-convergence"><span class="header-section-number">3.2</span> Regional Convergence</a></li>
-  <li><a href="#gender-gaps" id="toc-gender-gaps" class="nav-link" data-scroll-target="#gender-gaps"><span class="header-section-number">3.3</span> Gender Gaps</a></li>
+  <li><a href="#growth-in-each-education-level-by-region" id="toc-growth-in-each-education-level-by-region" class="nav-link" data-scroll-target="#growth-in-each-education-level-by-region"><span class="header-section-number">3.1</span> Growth in Each Education Level by Region</a></li>
+  <li><a href="#enrollment-trends-over-time-2000-2020" id="toc-enrollment-trends-over-time-2000-2020" class="nav-link" data-scroll-target="#enrollment-trends-over-time-2000-2020"><span class="header-section-number">3.2</span> Enrollment Trends over Time 2000-2020</a></li>
+  <li><a href="#regional-convergence" id="toc-regional-convergence" class="nav-link" data-scroll-target="#regional-convergence"><span class="header-section-number">3.3</span> Regional Convergence</a></li>
+  <li><a href="#gender-gaps" id="toc-gender-gaps" class="nav-link" data-scroll-target="#gender-gaps"><span class="header-section-number">3.4</span> Gender Gaps</a></li>
   </ul></li>
   <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion"><span class="header-section-number">4</span> Results and Discussion</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
@@ -217,134 +221,347 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exporting-final-dataset" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="exporting-final-dataset"><span class="header-section-number">2.5</span> Exporting Final Dataset</h2>
 <p>The final long-format dataset used for analysis was saved as <code>data/wdi_edu_filtered_long.csv</code>.</p>
+<p>Here is summary statistics for the variables we have across all regions from 2000-2020:</p>
+<div id="00ec15d6" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/wdi_edu_filtered_long.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">"wdi_edu.db"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df.to_sql(<span class="st">"wdi_edu"</span>, conn, if_exists<span class="op">=</span><span class="st">"replace"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>pd.read_sql(<span class="st">'''</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">    series,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">    AVG(value) AS mean_rate,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">    MIN(value) AS min_rate,</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">    MAX(value) AS max_rate</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_edu</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE year BETWEEN 2000 AND 2020</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY series;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>, conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">series</th>
+<th data-quarto-table-cell-role="th">mean_rate</th>
+<th data-quarto-table-cell-role="th">min_rate</th>
+<th data-quarto-table-cell-role="th">max_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>primary</td>
+<td>101.106546</td>
+<td>79.473808</td>
+<td>118.426079</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>primary_female</td>
+<td>99.523326</td>
+<td>73.061752</td>
+<td>125.894310</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>primary_male</td>
+<td>102.625246</td>
+<td>85.790840</td>
+<td>117.201439</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>secondary</td>
+<td>73.880423</td>
+<td>25.435600</td>
+<td>105.108917</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>secondary_female</td>
+<td>72.962301</td>
+<td>22.674450</td>
+<td>104.589317</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>secondary_male</td>
+<td>74.752978</td>
+<td>28.168131</td>
+<td>105.600121</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>tertiary</td>
+<td>36.725496</td>
+<td>4.384480</td>
+<td>86.950279</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>tertiary_female</td>
+<td>39.691699</td>
+<td>3.595470</td>
+<td>101.383179</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>tertiary_male</td>
+<td>33.892155</td>
+<td>5.179770</td>
+<td>74.362297</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="data-analysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Data Analysis</h1>
-<p><em>add sql table</em></p>
-<div id="6d458c06" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.image <span class="im">as</span> mpimg</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convergence Lines</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>converge_line_primary <span class="op">=</span> mpimg.imread(<span class="st">"figures/primary_convergence_lines_colored.png"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>converge_line_secondary <span class="op">=</span> mpimg.imread(<span class="st">"figures/secondary_convergence_lines_colored.png"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>converge_line_tertiary <span class="op">=</span> mpimg.imread(<span class="st">"figures/tertiary_convergence_lines_colored.png"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convergence Bars</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>converge_bar_primary <span class="op">=</span> mpimg.imread(<span class="st">"figures/primary_convergence_barplot_colored.png"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>converge_bar_secondary <span class="op">=</span> mpimg.imread(<span class="st">"figures/secondary_convergence_barplot_colored.png"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>converge_bar_tertiary <span class="op">=</span> mpimg.imread(<span class="st">"figures/tertiary_convergence_barplot_colored.png"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Gender Gap </span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>gpi_primary <span class="op">=</span> mpimg.imread(<span class="st">"figures/gpi_trend_primary.png"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>gpi_secondary <span class="op">=</span> mpimg.imread(<span class="st">"figures/gpi_trend_secondary.png"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>gpi_tertiary <span class="op">=</span> mpimg.imread(<span class="st">"figures/gpi_trend_tertiary.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="growth-in-each-education-level-by-region" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="growth-in-each-education-level-by-region"><span class="header-section-number">3.1</span> Growth in Each Education Level by Region</h2>
+<p>This table reports the average annual growth in primary, secondary, and tertiary school enrollment rates for each world region between 2000 and 2020. Growth rates are calculated as the year-to-year change in enrollment values, and then averaged over the 20-year period to capture longer-term regional trends. Positive values indicate that enrollment has generally increased over time, while negative values reflect declining or stagnant progress. Comparing growth across regions and education levels highlights where expansion in access to schooling has been fastest and where progress has been more limited.</p>
+<div id="646b4600" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.read_sql(<span class="st">'''</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">WITH growth AS (</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">        region,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">        series,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">        AVG(annual_growth) AS avg_growth</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM (</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">        SELECT</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">            region,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">            series,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">            value - LAG(value) OVER (PARTITION BY region, series ORDER BY year)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">                AS annual_growth</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">        FROM wdi_edu</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">        WHERE year BETWEEN 2000 AND 2020</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">          AND series IN ('primary','secondary','tertiary')</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">    ) g</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE annual_growth IS NOT NULL</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY region, series</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">    region,</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="st">    MAX(CASE WHEN series = 'primary' THEN avg_growth END) AS primary_growth,</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="st">    MAX(CASE WHEN series = 'secondary' THEN avg_growth END) AS secondary_growth,</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="st">    MAX(CASE WHEN series = 'tertiary' THEN avg_growth END) AS tertiary_growth</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="st">FROM growth</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY region</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY region;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>, conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">primary_growth</th>
+<th data-quarto-table-cell-role="th">secondary_growth</th>
+<th data-quarto-table-cell-role="th">tertiary_growth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>East Asia &amp; Pacific</td>
+<td>-0.508122</td>
+<td>1.387767</td>
+<td>1.804751</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Europe &amp; Central Asia</td>
+<td>-0.166644</td>
+<td>0.397700</td>
+<td>1.491138</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Latin America &amp; Caribbean</td>
+<td>-0.489661</td>
+<td>0.886855</td>
+<td>1.552549</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Middle East, North Africa, Afghanistan &amp; Pakistan</td>
+<td>0.528657</td>
+<td>0.525619</td>
+<td>0.737428</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>North America</td>
+<td>-0.031169</td>
+<td>0.326427</td>
+<td>0.971567</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>South Asia</td>
+<td>0.233246</td>
+<td>1.474988</td>
+<td>0.949892</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Sub-Saharan Africa</td>
+<td>0.921688</td>
+<td>0.963458</td>
+<td>0.240672</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>World</td>
+<td>0.025631</td>
+<td>0.851748</td>
+<td>1.011157</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<section id="enrollment-trends-over-time-2000-2020" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="enrollment-trends-over-time-2000-2020"><span class="header-section-number">3.1</span> Enrollment Trends over Time 2000-2020</h2>
+</div>
+</div>
+<p>Sub-Saharan Africa shows the fastest increase in primary enrollment, with an average annual rise of 0.92 percentage points. This suggests steady and sustained improvement in access to primary education across the region. Sub-Saharan Africa also experienced similar gains in secondary enrollment, although East Asia &amp; Pacific and South Asia outpaced all regions with even higher average yearly increases of 1.39 and 1.47, respectively. For tertiary education, East Asia &amp; Pacific, Latin America &amp; Caribbean, and the global average all exceeded 1 percentage point of growth per year, indicating particularly rapid expansion in higher education access in these regions. Taken together, these trends highlight that while basic education has been improving globally, while Sub-Saharan Africa has prioritized building strong progress at the primary level as a critical foundation for long-term educational development.</p>
+<div id="7a7a70fd" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.image <span class="im">as</span> mpimg</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convergence Lines</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>converge_line_primary <span class="op">=</span> mpimg.imread(<span class="st">"figures/primary_convergence_lines_colored.png"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>converge_line_secondary <span class="op">=</span> mpimg.imread(<span class="st">"figures/secondary_convergence_lines_colored.png"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>converge_line_tertiary <span class="op">=</span> mpimg.imread(<span class="st">"figures/tertiary_convergence_lines_colored.png"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convergence Bars</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>converge_bar_primary <span class="op">=</span> mpimg.imread(<span class="st">"figures/primary_convergence_barplot_colored.png"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>converge_bar_secondary <span class="op">=</span> mpimg.imread(<span class="st">"figures/secondary_convergence_barplot_colored.png"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>converge_bar_tertiary <span class="op">=</span> mpimg.imread(<span class="st">"figures/tertiary_convergence_barplot_colored.png"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Gender Gap </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>gpi_primary <span class="op">=</span> mpimg.imread(<span class="st">"figures/gpi_trend_primary.png"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>gpi_secondary <span class="op">=</span> mpimg.imread(<span class="st">"figures/gpi_trend_secondary.png"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>gpi_tertiary <span class="op">=</span> mpimg.imread(<span class="st">"figures/gpi_trend_tertiary.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="enrollment-trends-over-time-2000-2020" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="enrollment-trends-over-time-2000-2020"><span class="header-section-number">3.2</span> Enrollment Trends over Time 2000-2020</h2>
 <p><em>intro</em></p>
-<div id="39598dcd" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_line_primary)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_line_secondary)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_line_tertiary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="a34f200f" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_line_primary)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_line_secondary)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_line_tertiary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-3-output-1.png" width="575" height="359" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-5-output-1.png" width="575" height="359" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-3-output-2.png" width="575" height="359" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-5-output-2.png" width="575" height="359" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-3-output-3.png" width="575" height="359" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-5-output-3.png" width="575" height="359" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><em>analysis</em></p>
 </section>
-<section id="regional-convergence" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="regional-convergence"><span class="header-section-number">3.2</span> Regional Convergence</h2>
+<section id="regional-convergence" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="regional-convergence"><span class="header-section-number">3.3</span> Regional Convergence</h2>
 <p>To assess how each region compare to the global education level, we examine the convergence in primary, secondary, and tertiary school enrollment. For 2000 and 2020, we caculated each region’s gap from the world average and measured convergence as the reduction in the absolute distance to the global mean. A positive convergence score indicates the region is moving closer to the world enrollment level while a negative score indicates divergence.</p>
 <p>Importantly, these convergence scores should be interpreted alongside previous line graphs. A negative score does not necessarily imply worsening outcomes as divergence may occur because a region’s enrollment rate is rising faster than the world average and surpassing it, not only because it is falling behind. Thus, evaluating both the direction of the gap and the trajectory of enrollment levels is essential for understanding the nature of convergence or divergence.</p>
 <p>The bar plots summarize how five major world regions (East Asia &amp; Pacific, Latin America &amp; Caribbean, Middle East &amp; North Africa, South Asoa, and Sub-Saharan Africa) progress across education levels. This helps reveal not only which regions are closing historical enrollment gaps but also where disparities have persisted or widened over the past two decades.</p>
-<div id="0acb40c3" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_bar_primary)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_bar_secondary)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_bar_tertiary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="632993b6" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_bar_primary)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_bar_secondary)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(converge_bar_tertiary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-4-output-1.png" width="575" height="359" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-6-output-1.png" width="575" height="359" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-4-output-2.png" width="575" height="359" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-6-output-2.png" width="575" height="359" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-4-output-3.png" width="575" height="359" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-6-output-3.png" width="575" height="359" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><em>analysis</em></p>
 </section>
-<section id="gender-gaps" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="gender-gaps"><span class="header-section-number">3.3</span> Gender Gaps</h2>
+<section id="gender-gaps" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="gender-gaps"><span class="header-section-number">3.4</span> Gender Gaps</h2>
 <p><em>intro</em></p>
-<div id="b35a4d5e" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(gpi_primary)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(gpi_secondary)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(gpi_tertiary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="8cff14fc" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(gpi_primary)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(gpi_secondary)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.imshow(gpi_tertiary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-5-output-1.png" width="583" height="365" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-7-output-1.png" width="583" height="365" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-5-output-2.png" width="583" height="365" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-7-output-2.png" width="583" height="365" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final_report_files/figure-html/cell-5-output-3.png" width="583" height="365" class="figure-img"></p>
+<p><img src="final_report_files/figure-html/cell-7-output-3.png" width="583" height="365" class="figure-img"></p>
 </figure>
 </div>
 </div>
