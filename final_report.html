@@ -89,14 +89,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#data-description-cleaning" id="toc-data-description-cleaning" class="nav-link" data-scroll-target="#data-description-cleaning"><span class="header-section-number">2</span> Data Description &amp; Cleaning</a>
   <ul class="collapse">
-  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">2.1</span> Data Cleaning</a>
-  <ul class="collapse">
-  <li><a href="#removal-of-missing-values" id="toc-removal-of-missing-values" class="nav-link" data-scroll-target="#removal-of-missing-values"><span class="header-section-number">2.1.1</span> Removal of Missing Values</a></li>
-  <li><a href="#standardizing-indicator-labels" id="toc-standardizing-indicator-labels" class="nav-link" data-scroll-target="#standardizing-indicator-labels"><span class="header-section-number">2.1.2</span> Standardizing Indicator Labels</a></li>
-  <li><a href="#filtering-to-target-regions" id="toc-filtering-to-target-regions" class="nav-link" data-scroll-target="#filtering-to-target-regions"><span class="header-section-number">2.1.3</span> Filtering to Target Regions</a></li>
-  <li><a href="#converting-to-long-format" id="toc-converting-to-long-format" class="nav-link" data-scroll-target="#converting-to-long-format"><span class="header-section-number">2.1.4</span> Converting to Long Format</a></li>
-  <li><a href="#exporting-final-dataset" id="toc-exporting-final-dataset" class="nav-link" data-scroll-target="#exporting-final-dataset"><span class="header-section-number">2.1.5</span> Exporting Final Dataset</a></li>
-  </ul></li>
+  <li><a href="#removal-of-missing-values" id="toc-removal-of-missing-values" class="nav-link" data-scroll-target="#removal-of-missing-values"><span class="header-section-number">2.1</span> Removal of Missing Values</a></li>
+  <li><a href="#standardizing-indicator-labels" id="toc-standardizing-indicator-labels" class="nav-link" data-scroll-target="#standardizing-indicator-labels"><span class="header-section-number">2.2</span> Standardizing Indicator Labels</a></li>
+  <li><a href="#filtering-to-target-regions" id="toc-filtering-to-target-regions" class="nav-link" data-scroll-target="#filtering-to-target-regions"><span class="header-section-number">2.3</span> Filtering to Target Regions</a></li>
+  <li><a href="#converting-to-long-format" id="toc-converting-to-long-format" class="nav-link" data-scroll-target="#converting-to-long-format"><span class="header-section-number">2.4</span> Converting to Long Format</a></li>
+  <li><a href="#exporting-final-dataset" id="toc-exporting-final-dataset" class="nav-link" data-scroll-target="#exporting-final-dataset"><span class="header-section-number">2.5</span> Exporting Final Dataset</a></li>
   </ul></li>
   <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">3</span> Data Analysis</a>
   <ul class="collapse">
@@ -172,15 +169,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Data were collected for all available countries over the period <strong>2000–2020</strong> using the <code>wb.data.DataFrame()</code> function. The raw dataset was saved as <code>data/wdi_edu.csv</code>.</p>
 <hr>
-<section id="data-cleaning" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">2.1</span> Data Cleaning</h2>
 <p>Here are our preprocessing steps before analysis:</p>
-<section id="removal-of-missing-values" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="removal-of-missing-values"><span class="header-section-number">2.1.1</span> Removal of Missing Values</h3>
+<section id="removal-of-missing-values" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="removal-of-missing-values"><span class="header-section-number">2.1</span> Removal of Missing Values</h2>
 <p>Rows with incomplete observations across any of the enrollment indicators were removed to ensure consistent time-series data. The resulting cleaned dataset (<code>df_clean</code>) contains only complete country-year records for all twenty years.</p>
 </section>
-<section id="standardizing-indicator-labels" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="standardizing-indicator-labels"><span class="header-section-number">2.1.2</span> Standardizing Indicator Labels</h3>
+<section id="standardizing-indicator-labels" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="standardizing-indicator-labels"><span class="header-section-number">2.2</span> Standardizing Indicator Labels</h2>
 <p>A mapping dictionary was applied to replace WDI indicator codes with more descriptive names such as:</p>
 <ul>
 <li><code>"SE.PRM.ENRR"</code> → <code>"primary"</code></li>
@@ -189,8 +184,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>"SE.TER.ENRR"</code> → <code>"tertiary"</code></li>
 </ul>
 </section>
-<section id="filtering-to-target-regions" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="filtering-to-target-regions"><span class="header-section-number">2.1.3</span> Filtering to Target Regions</h3>
+<section id="filtering-to-target-regions" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="filtering-to-target-regions"><span class="header-section-number">2.3</span> Filtering to Target Regions</h2>
 <p>We filtered our data down to keep only the major global regions:</p>
 <ul>
 <li>Sub-Saharan Africa<br>
@@ -210,8 +205,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>World</li>
 </ul>
 </section>
-<section id="converting-to-long-format" class="level3" data-number="2.1.4">
-<h3 data-number="2.1.4" class="anchored" data-anchor-id="converting-to-long-format"><span class="header-section-number">2.1.4</span> Converting to Long Format</h3>
+<section id="converting-to-long-format" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="converting-to-long-format"><span class="header-section-number">2.4</span> Converting to Long Format</h2>
 <p>The cleaned regional dataset was reshaped from wide to long form:</p>
 <ul>
 <li>Year columns (e.g., <code>"YR2000"</code>) were turned into a single <code>year</code> variable.</li>
@@ -219,10 +214,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Data were sorted by <code>Country</code>, <code>series</code>, and <code>year</code>.</li>
 </ul>
 </section>
-<section id="exporting-final-dataset" class="level3" data-number="2.1.5">
-<h3 data-number="2.1.5" class="anchored" data-anchor-id="exporting-final-dataset"><span class="header-section-number">2.1.5</span> Exporting Final Dataset</h3>
+<section id="exporting-final-dataset" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="exporting-final-dataset"><span class="header-section-number">2.5</span> Exporting Final Dataset</h2>
 <p>The final long-format dataset used for analysis was saved as <code>data/wdi_edu_filtered_long.csv</code>.</p>
-</section>
 </section>
 </section>
 <section id="data-analysis" class="level1" data-number="3">

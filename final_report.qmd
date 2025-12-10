@@ -51,14 +51,12 @@ Data were collected for all available countries over the period **2000–2020** 
 
 ---
 
-## Data Cleaning
-
 Here are our preprocessing steps before  analysis:
 
-### Removal of Missing Values
+## Removal of Missing Values
 Rows with incomplete observations across any of the enrollment indicators were removed to ensure consistent time-series data. The resulting cleaned dataset (`df_clean`) contains only complete country-year records for all twenty years.
 
-### Standardizing Indicator Labels
+## Standardizing Indicator Labels
 A mapping dictionary was applied to replace WDI indicator codes with more descriptive names such as:
 
 - `"SE.PRM.ENRR"` → `"primary"`
@@ -66,7 +64,7 @@ A mapping dictionary was applied to replace WDI indicator codes with more descri
 - `"SE.SEC.ENRR.MA"` → `"secondary_male"`
 - `"SE.TER.ENRR"` → `"tertiary"`
 
-### Filtering to Target Regions
+## Filtering to Target Regions
 We filtered our data down to keep only the major global regions:
 
 - Sub-Saharan Africa  
@@ -78,14 +76,14 @@ We filtered our data down to keep only the major global regions:
 - North America  
 - World
 
-### Converting to Long Format
+## Converting to Long Format
 The cleaned regional dataset was reshaped from wide to long form:
 
 - Year columns (e.g., `"YR2000"`) were turned into a single `year` variable.
 - `"YR"` prefixes were removed and values were converted to integers.
 - Data were sorted by `Country`, `series`, and `year`.
 
-### Exporting Final Dataset
+## Exporting Final Dataset
 The final long-format dataset used for analysis was saved as `data/wdi_edu_filtered_long.csv`.
 
 # Data Analysis
