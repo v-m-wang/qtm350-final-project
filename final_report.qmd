@@ -125,7 +125,7 @@ GROUP BY series;
 ''', conn)
 ```
 
-# Data Analysis
+# Data Analysis and Interpretation
 ## Growth Across Education Levels by Region
 This table reports the average annual growth in primary, secondary, and tertiary school enrollment rates for each world region between 2000 and 2020. Growth rates are calculated as the year-to-year change in enrollment values, and then averaged over the 20-year period to capture longer-term regional trends. Positive values indicate that enrollment has generally increased over time, while negative values reflect declining or stagnant progress. Comparing growth across regions and education levels highlights where expansion in access to schooling has been fastest and where progress has been more limited.
 
@@ -212,8 +212,26 @@ At the tertiary level, gender disparities become more pronounced and regionally 
 
 # Results and Discussion
 
+## ***Regional Growth in Enrollment (2000–2020)***
 
+Across the five regions analyzed, enrollment increased at all three education levels, though the pace of expansion varied considerably. Sub-Saharan Africa experienced the fastest improvement in primary enrollment, averaging nearly a one-percentage-point rise per year. At the secondary level, East Asia & Pacific and South Asia recorded the largest annual gains, reflecting sustained investments in post-primary schooling. Tertiary expansion was most rapid in East Asia & Pacific and Latin America & Caribbean, each exceeding one percentage point of annual growth. These patterns indicate that while all regions made progress, the speed and depth of educational expansion diverged across levels.
 
+## ***Enrollment Convergence Relative to the World Average***
 
+Line graphs of regional enrollment trajectories show substantial convergence at the primary level (\@fig-primary). Most regions began the period below or above the global average but moved closer to it over time, driven by widespread improvement in basic education. Convergence weakened at the secondary level (\@fig-secondary-line), where disparities persisted between higher-performing regions (Latin America & Caribbean, East Asia & Pacific) and those lagging behind (South Asia, the Middle East, North Africa, Afghanistan & Pakistan, Sub-Saharan Africa). At the tertiary level (\@fig-tertiary-line), divergence was pronounced: Latin America & Caribbean and East Asia & Pacific expanded rapidly, while other regions improved only modestly, widening global inequalities in higher education access. Bar plots corroborate these trends. Primary convergence was strongest for Sub-Saharan Africa and East Asia & Pacific (\@fig-primary-bar), whereas secondary convergence was driven mainly by South Asia (\@fig-secondary-bar). At the tertiary level, only South Asia showed measurable convergence; all other regions diverged from the global trend (\@fig-tertiary-bar).
+
+## ***Gender Parity in Educational Participation***
+
+Primary-level GPI values indicate near-universal movement toward gender parity across regions (\@fig-gpi-primary). By 2020, nearly all regions fall within the near-parity band (0.97–1.03). Secondary-level GPI trends show partial convergence (\@fig-gpi-secondary), with Latin America & Caribbean consistently favoring girls and East Asia & Pacific reaching parity by the mid-2000s. In contrast, South Asia and Sub-Saharan Africa remain slightly below parity throughout, despite clear upward trajectories. At the tertiary level, gender disparities widen across regions (\@fig-gpi-tertiary). Latin America & Caribbean and East Asia & Pacific display strong female advantage, while Sub-Saharan Africa remains far below parity, indicating persistent and structural barriers preventing women’s participation in higher education.
+
+The results show that while educational access has expanded worldwide, progress has been uneven across levels and regions. Primary schooling exhibits the strongest convergence, with nearly all regions approaching the world average by 2020. And this reflects the effectiveness of global initiatives aimed at universalizing basic education.
+
+In contrast, secondary enrollment shows more limited convergence. Although regions such as Latin America & Caribbean and East Asia & Pacific maintain high participation, South Asia, the Middle East, North Africa, Afghanistan & Pakistan, and Sub-Saharan Africa continue to lag behind. These persistent disparities highlight structural barriers, such as financial constraints, limited school capacity, and gendered labor expectations, that become more pronounced in adolescence.
+
+Tertiary education displays the greatest divergence. Rapid expansion in East Asia & Pacific and Latin America & Caribbean has widened global inequalities, while other regions show much slower progress, suggesting that higher education remains closely tied to national economic capacity and long-term policy investment.
+
+Gender parity patterns reinforce these trends. While most regions reach near parity at the primary level, gaps persist at secondary school and widen significantly at the tertiary level, particularly in Sub-Saharan Africa, showing that early gains for girls do not consistently translate into equal opportunities at higher levels, where financial, cultural, and institutional barriers intensify.
 
 # Conclusion
+
+Our project examined regional enrollment growth, convergence toward global averages, and gender parity across primary, secondary, and tertiary education from 2000 to 2020. The findings show clear global progress at the foundational level: primary enrollment has expanded broadly, and most regions now achieve gender parity. However, disparities widen as education levels advance. Secondary enrollment shows mixed convergence, and tertiary education exhibits significant divergence, with only a few regions experiencing rapid expansion. Gender inequalities follow a similar pattern. While primary-level parity is nearly universal, gaps persist at the secondary level and become especially pronounced in tertiary schooling, particularly in Sub-Saharan Africa. We think results highlight that early access to education has improved substantially, but equal opportunities for advancement remain uneven. The trends suggest that achieving global education equity requires shifting attention from universal primary schooling toward strengthening secondary and tertiary systems, reducing structural barriers, and ensuring equitable gender pathways across all levels of education!

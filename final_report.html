@@ -98,13 +98,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#converting-to-long-format" id="toc-converting-to-long-format" class="nav-link" data-scroll-target="#converting-to-long-format"><span class="header-section-number">2.4</span> Converting to Long Format</a></li>
   <li><a href="#exporting-final-dataset" id="toc-exporting-final-dataset" class="nav-link" data-scroll-target="#exporting-final-dataset"><span class="header-section-number">2.5</span> Exporting Final Dataset</a></li>
   </ul></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">3</span> Data Analysis</a>
+  <li><a href="#data-analysis-and-interpretation" id="toc-data-analysis-and-interpretation" class="nav-link" data-scroll-target="#data-analysis-and-interpretation"><span class="header-section-number">3</span> Data Analysis and Interpretation</a>
   <ul class="collapse">
   <li><a href="#growth-across-education-levels-by-region" id="toc-growth-across-education-levels-by-region" class="nav-link" data-scroll-target="#growth-across-education-levels-by-region"><span class="header-section-number">3.1</span> Growth Across Education Levels by Region</a></li>
   <li><a href="#enrollment-trends-over-time-across-regions-20002020" id="toc-enrollment-trends-over-time-across-regions-20002020" class="nav-link" data-scroll-target="#enrollment-trends-over-time-across-regions-20002020"><span class="header-section-number">3.2</span> Enrollment Trends Over Time Across Regions (2000–2020)</a></li>
   <li><a href="#gender-parity-in-educational-participation" id="toc-gender-parity-in-educational-participation" class="nav-link" data-scroll-target="#gender-parity-in-educational-participation"><span class="header-section-number">3.3</span> Gender Parity in Educational Participation</a></li>
   </ul></li>
-  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion"><span class="header-section-number">4</span> Results and Discussion</a></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion"><span class="header-section-number">4</span> Results and Discussion</a>
+  <ul class="collapse">
+  <li><a href="#regional-growth-in-enrollment-20002020" id="toc-regional-growth-in-enrollment-20002020" class="nav-link" data-scroll-target="#regional-growth-in-enrollment-20002020"><span class="header-section-number">4.1</span> <strong><em>Regional Growth in Enrollment (2000–2020)</em></strong></a></li>
+  <li><a href="#enrollment-convergence-relative-to-the-world-average" id="toc-enrollment-convergence-relative-to-the-world-average" class="nav-link" data-scroll-target="#enrollment-convergence-relative-to-the-world-average"><span class="header-section-number">4.2</span> <strong><em>Enrollment Convergence Relative to the World Average</em></strong></a></li>
+  <li><a href="#gender-parity-in-educational-participation-1" id="toc-gender-parity-in-educational-participation-1" class="nav-link" data-scroll-target="#gender-parity-in-educational-participation-1"><span class="header-section-number">4.3</span> <strong><em>Gender Parity in Educational Participation</em></strong></a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="final_report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -228,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.5" class="anchored" data-anchor-id="exporting-final-dataset"><span class="header-section-number">2.5</span> Exporting Final Dataset</h2>
 <p>The final long-format dataset used for analysis was saved as <code>data/wdi_edu_filtered_long.csv</code>.</p>
 <p>Here is summary statistics for the variables we have across all regions from 2000-2020:</p>
-<div id="13a8dad2" class="cell" data-execution_count="1">
+<div id="44c4362b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -332,12 +337,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="data-analysis" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Data Analysis</h1>
+<section id="data-analysis-and-interpretation" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Data Analysis and Interpretation</h1>
 <section id="growth-across-education-levels-by-region" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="growth-across-education-levels-by-region"><span class="header-section-number">3.1</span> Growth Across Education Levels by Region</h2>
 <p>This table reports the average annual growth in primary, secondary, and tertiary school enrollment rates for each world region between 2000 and 2020. Growth rates are calculated as the year-to-year change in enrollment values, and then averaged over the 20-year period to capture longer-term regional trends. Positive values indicate that enrollment has generally increased over time, while negative values reflect declining or stagnant progress. Comparing growth across regions and education levels highlights where expansion in access to schooling has been fastest and where progress has been more limited.</p>
-<div id="76751a03" class="cell" data-execution_count="2">
+<div id="45939215" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.read_sql(<span class="st">'''</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">WITH growth AS (</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT</span></span>
@@ -449,21 +454,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.2" class="anchored" data-anchor-id="enrollment-trends-over-time-across-regions-20002020"><span class="header-section-number">3.2</span> Enrollment Trends Over Time Across Regions (2000–2020)</h2>
 <p>To evaluate how each region compares to global progress in education access, we examine convergence in primary, secondary, and tertiary enrollment rates over the 20-year period.</p>
 <p>The line graphs show how closely each region tracks the world average and whether disparities have narrowed or widened.</p>
-<div id="fig-primary" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-primary-line" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-primary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/enrollment_convergence_primary.png" id="fig-primary" class="img-fluid figure-img" style="width:80.0%">
+<div aria-describedby="fig-primary-line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/enrollment_convergence_primary.png" id="fig-primary-line" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-primary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-primary-line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
 </figcaption>
 </figure>
 </div>
-<p>As shown in <a href="#fig-primary" class="quarto-xref">Figure&nbsp;1</a>, primary enrollment shows clear convergence across regions. Sub-Saharan Africa and the Middle East, North Africa, Afghanistan &amp; Pakistan start well below the world average but improve steadily, reducing the gap by 2020. Latin America &amp; Caribbean remains consistently above the global level but gradually moves closer to it. The differences across regions narrow over time, indicating strong convergence at the primary level.</p>
-<div id="fig-secondary-line" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<p>As shown in <a href="#fig-primary-line" class="quarto-xref">Figure&nbsp;1</a>, primary enrollment shows clear convergence across regions. Sub-Saharan Africa and the Middle East, North Africa, Afghanistan &amp; Pakistan start well below the world average but improve steadily, reducing the gap by 2020. Latin America &amp; Caribbean remains consistently above the global level but gradually moves closer to it. The differences across regions narrow over time, indicating strong convergence at the primary level.</p>
+<div id="fig-secondary-line" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-secondary-line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/enrollment_convergence_secondary.png" id="fig-secondary-line" class="img-fluid figure-img" style="width:80.0%">
+<img src="figures/enrollment_convergence_secondary.png" id="fig-secondary-line" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-secondary-line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2
@@ -471,10 +476,10 @@ Figure&nbsp;2
 </figure>
 </div>
 <p>As illustrated in <a href="#fig-secondary-line" class="quarto-xref">Figure&nbsp;2</a>, progress at the secondary level is more uneven. High-performing regions such as Latin America &amp; Caribbean and East Asia &amp; Pacific rise steadily and remain above the world average. Meanwhile, South Asia, the Middle East, North Africa, Afghanistan &amp; Pakistan, and especially Sub-Saharan Africa improve more slowly and remain far below global levels. Convergence is weaker here, and substantial regional disparities persist.</p>
-<div id="fig-tertiary-line" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-tertiary-line" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tertiary-line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/enrollment_convergence_tertiary.png" id="fig-tertiary-line" class="img-fluid figure-img" style="width:80.0%">
+<img src="figures/enrollment_convergence_tertiary.png" id="fig-tertiary-line" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-tertiary-line-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3
@@ -483,10 +488,10 @@ Figure&nbsp;3
 </div>
 <p>As shown in <a href="#fig-tertiary-line" class="quarto-xref">Figure&nbsp;3</a>, tertiary enrollment displays the least convergence. Latin America &amp; Caribbean and East Asia &amp; Pacific expand rapidly and widen their advantage over other regions. The Middle East, North Africa, Afghanistan &amp; Pakistan, South Asia, and Sub-Saharan Africa improve but remain far behind. Overall, tertiary education reflects divergence rather than convergence, with inequalities growing over time.</p>
 <p>The bar plots summarize how five major world regions (East Asia &amp; Pacific, Latin America &amp; Caribbean, Middle East &amp; North Africa, South Asoa, and Sub-Saharan Africa) progress across education levels. This helps reveal not only which regions are closing historical enrollment gaps but also where disparities have persisted or widened over the past two decades.</p>
-<div id="fig-primary-bar" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-primary-bar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-primary-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/enrollment_convergence_bar_primary.png" id="fig-primary-bar" class="img-fluid figure-img" style="width:80.0%">
+<img src="figures/enrollment_convergence_bar_primary.png" id="fig-primary-bar" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-primary-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4
@@ -494,10 +499,10 @@ Figure&nbsp;4
 </figure>
 </div>
 <p>As shown in <a href="#fig-primary-bar" class="quarto-xref">Figure&nbsp;4</a>, Sub-Saharan Africa displays the strongest convergence toward the world average, followed by East Asia &amp; Pacific and Latin America &amp; Caribbean. The Middle East, North Africa, Afghanistan &amp; Pakistan also shows moderate improvement. South Asia slightly diverges, ending farther from the global baseline than in 2000.</p>
-<div id="fig-secondary-bar" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-secondary-bar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-secondary-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/enrollment_convergence_bar_secondary.png" id="fig-secondary-bar" class="img-fluid figure-img" style="width:80.0%">
+<img src="figures/enrollment_convergence_bar_secondary.png" id="fig-secondary-bar" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-secondary-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5
@@ -505,10 +510,10 @@ Figure&nbsp;5
 </figure>
 </div>
 <p>As seen in <a href="#fig-secondary-bar" class="quarto-xref">Figure&nbsp;5</a>, South Asia exhibits the largest improvement and closes the gap most strongly. Other regions experience smaller positive shifts, except East Asia &amp; Pacific, which diverges because its secondary enrollment rose faster than the world average.</p>
-<div id="fig-tertiary-bar" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-tertiary-bar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tertiary-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/enrollment_convergence_bar_tertiary.png" id="fig-tertiary-bar" class="img-fluid figure-img" style="width:80.0%">
+<img src="figures/enrollment_convergence_bar_tertiary.png" id="fig-tertiary-bar" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-tertiary-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6
@@ -520,10 +525,10 @@ Figure&nbsp;6
 <section id="gender-parity-in-educational-participation" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="gender-parity-in-educational-participation"><span class="header-section-number">3.3</span> Gender Parity in Educational Participation</h2>
 <p>We assess the evolution of female–male enrollment disparities across five major world regions with historically lower baseline access to education: East Asia &amp; Pacific, Latin America &amp; Caribbean, the Middle East &amp; North Africa (including Afghanistan and Pakistan), South Asia, and Sub-Saharan Africa. The global average serves as a benchmark to contextualize regional progress. Gender disparities are measured using the Gender Parity Index (GPI), defined as female enrollment divided by male enrollment. A value of 1.0 represents gender parity, while values below or above 1.0 indicate male- and female-favored enrollment gaps, respectively. Our analysis examines GPI trends across three educational levels—primary, secondary, and tertiary—between 2000 and 2020.</p>
-<div id="fig-gpi-primary" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-gpi-primary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gpi-primary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/gpi_primary.png" id="fig-gpi-primary" class="img-fluid figure-img" style="width:80.0%">
+<img src="figures/gpi_primary.png" id="fig-gpi-primary" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-gpi-primary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7
@@ -531,10 +536,10 @@ Figure&nbsp;7
 </figure>
 </div>
 <p>As shown in <a href="#fig-gpi-primary" class="quarto-xref">Figure&nbsp;7</a>, primary-level GPI trends reveal substantial convergence toward gender parity across all regions. By 2020, nearly all regions are positioned within the internationally recognized near-parity threshold (0.97–1.03), including the global average, indicating that gender inequality at the point of entry into schooling has been largely eliminated. Latin America &amp; the Caribbean demonstrates a consistently slight female advantage throughout the two decades. East Asia &amp; Pacific and the world average achieved parity by the mid-2000s and maintained it thereafter. Although starting from a relatively disadvantaged position in 2000, South Asia and Sub-Saharan Africa exhibit steady and continuous improvement, closing the enrollment gap substantially by 2020. These patterns suggest that global education initiatives targeting universal primary school access have been effective in reducing structural gender exclusion in early schooling.</p>
-<div id="fig-gpi-secondary" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-gpi-secondary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gpi-secondary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/gpi_secondary.png" id="fig-gpi-secondary" class="img-fluid figure-img" style="width:80.0%">
+<img src="figures/gpi_secondary.png" id="fig-gpi-secondary" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-gpi-secondary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8
@@ -542,10 +547,10 @@ Figure&nbsp;8
 </figure>
 </div>
 <p><a href="#fig-gpi-secondary" class="quarto-xref">Figure&nbsp;8</a> shows that while progress is evident at the secondary level, regional disparities remain more persistent than at the primary level. The world average and East Asia &amp; Pacific reached parity by approximately 2010, indicating successful transition for girls into lower-secondary education in these contexts. In contrast, South Asia and Sub-Saharan Africa continue to fall slightly below parity by the end of the time period (approximately 0.94–0.95), despite gradual improvement. The Middle East, North Africa, Afghanistan &amp; Pakistan grouping demonstrates slower convergence toward parity, reflecting continued gendered constraints during adolescence. Latin America &amp; the Caribbean sustains a female-favored balance throughout the period, suggesting comparatively stronger retention of girls beyond primary schooling. These patterns underscore the importance of the primary-to-secondary transition as a critical juncture at which gendered barriers intensify.</p>
-<div id="fig-gpi-tertiary" class="quarto-float quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-gpi-tertiary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gpi-tertiary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/gpi_tertiary.png" id="fig-gpi-tertiary" class="img-fluid figure-img" style="width:80.0%">
+<img src="figures/gpi_tertiary.png" id="fig-gpi-tertiary" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-gpi-tertiary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9
@@ -557,9 +562,26 @@ Figure&nbsp;9
 </section>
 <section id="results-and-discussion" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Results and Discussion</h1>
+<section id="regional-growth-in-enrollment-20002020" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="regional-growth-in-enrollment-20002020"><span class="header-section-number">4.1</span> <strong><em>Regional Growth in Enrollment (2000–2020)</em></strong></h2>
+<p>Across the five regions analyzed, enrollment increased at all three education levels, though the pace of expansion varied considerably. Sub-Saharan Africa experienced the fastest improvement in primary enrollment, averaging nearly a one-percentage-point rise per year. At the secondary level, East Asia &amp; Pacific and South Asia recorded the largest annual gains, reflecting sustained investments in post-primary schooling. Tertiary expansion was most rapid in East Asia &amp; Pacific and Latin America &amp; Caribbean, each exceeding one percentage point of annual growth. These patterns indicate that while all regions made progress, the speed and depth of educational expansion diverged across levels.</p>
+</section>
+<section id="enrollment-convergence-relative-to-the-world-average" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="enrollment-convergence-relative-to-the-world-average"><span class="header-section-number">4.2</span> <strong><em>Enrollment Convergence Relative to the World Average</em></strong></h2>
+<p>Line graphs of regional enrollment trajectories show substantial convergence at the primary level (@fig-primary). Most regions began the period below or above the global average but moved closer to it over time, driven by widespread improvement in basic education. Convergence weakened at the secondary level (@fig-secondary-line), where disparities persisted between higher-performing regions (Latin America &amp; Caribbean, East Asia &amp; Pacific) and those lagging behind (South Asia, the Middle East, North Africa, Afghanistan &amp; Pakistan, Sub-Saharan Africa). At the tertiary level (@fig-tertiary-line), divergence was pronounced: Latin America &amp; Caribbean and East Asia &amp; Pacific expanded rapidly, while other regions improved only modestly, widening global inequalities in higher education access. Bar plots corroborate these trends. Primary convergence was strongest for Sub-Saharan Africa and East Asia &amp; Pacific (@fig-primary-bar), whereas secondary convergence was driven mainly by South Asia (@fig-secondary-bar). At the tertiary level, only South Asia showed measurable convergence; all other regions diverged from the global trend (@fig-tertiary-bar).</p>
+</section>
+<section id="gender-parity-in-educational-participation-1" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="gender-parity-in-educational-participation-1"><span class="header-section-number">4.3</span> <strong><em>Gender Parity in Educational Participation</em></strong></h2>
+<p>Primary-level GPI values indicate near-universal movement toward gender parity across regions (@fig-gpi-primary). By 2020, nearly all regions fall within the near-parity band (0.97–1.03). Secondary-level GPI trends show partial convergence (@fig-gpi-secondary), with Latin America &amp; Caribbean consistently favoring girls and East Asia &amp; Pacific reaching parity by the mid-2000s. In contrast, South Asia and Sub-Saharan Africa remain slightly below parity throughout, despite clear upward trajectories. At the tertiary level, gender disparities widen across regions (@fig-gpi-tertiary). Latin America &amp; Caribbean and East Asia &amp; Pacific display strong female advantage, while Sub-Saharan Africa remains far below parity, indicating persistent and structural barriers preventing women’s participation in higher education.</p>
+<p>The results show that while educational access has expanded worldwide, progress has been uneven across levels and regions. Primary schooling exhibits the strongest convergence, with nearly all regions approaching the world average by 2020. And this reflects the effectiveness of global initiatives aimed at universalizing basic education.</p>
+<p>In contrast, secondary enrollment shows more limited convergence. Although regions such as Latin America &amp; Caribbean and East Asia &amp; Pacific maintain high participation, South Asia, the Middle East, North Africa, Afghanistan &amp; Pakistan, and Sub-Saharan Africa continue to lag behind. These persistent disparities highlight structural barriers, such as financial constraints, limited school capacity, and gendered labor expectations, that become more pronounced in adolescence.</p>
+<p>Tertiary education displays the greatest divergence. Rapid expansion in East Asia &amp; Pacific and Latin America &amp; Caribbean has widened global inequalities, while other regions show much slower progress, suggesting that higher education remains closely tied to national economic capacity and long-term policy investment.</p>
+<p>Gender parity patterns reinforce these trends. While most regions reach near parity at the primary level, gaps persist at secondary school and widen significantly at the tertiary level, particularly in Sub-Saharan Africa, showing that early gains for girls do not consistently translate into equal opportunities at higher levels, where financial, cultural, and institutional barriers intensify.</p>
+</section>
 </section>
 <section id="conclusion" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Conclusion</h1>
+<p>Our project examined regional enrollment growth, convergence toward global averages, and gender parity across primary, secondary, and tertiary education from 2000 to 2020. The findings show clear global progress at the foundational level: primary enrollment has expanded broadly, and most regions now achieve gender parity. However, disparities widen as education levels advance. Secondary enrollment shows mixed convergence, and tertiary education exhibits significant divergence, with only a few regions experiencing rapid expansion. Gender inequalities follow a similar pattern. While primary-level parity is nearly universal, gaps persist at the secondary level and become especially pronounced in tertiary schooling, particularly in Sub-Saharan Africa. We think results highlight that early access to education has improved substantially, but equal opportunities for advancement remain uneven. The trends suggest that achieving global education equity requires shifting attention from universal primary schooling toward strengthening secondary and tertiary systems, reducing structural barriers, and ensuring equitable gender pathways across all levels of education!</p>
 </section>
 
 </main>
