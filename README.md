@@ -110,7 +110,17 @@ Run the following notebooks:
 scripts/"Education Convergence Analysis.ipynb"
 scripts/"Gender Gap Analysis.ipynb"
 ```
-Computed visualizations are stored in the `figures/` folder.
+The notebooks "Education Convergence Analysis.ipynb" and "Gender Gap Analysis.ipynb"" include an embedded project-root detection script at the top of each file. Do not forget to run this setup cell first.
+When executed successfully, you will see a message such as:
+```bash
+Project root detected as: /Users/<username>/qtm350-final-project
+## (or an equivalent path on your system)
+```
+This confirms that the notebook has correctly set up paths for data and figures.
+
+After execution:
+- cleaned datasets are saved to `data/`
+- completed figures are saved to `figures/` for Quarto use
 
 ---
 
