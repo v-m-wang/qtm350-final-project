@@ -59,7 +59,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="final_report_files/libs/clipboard/clipboard.min.js"></script>
@@ -70,10 +90,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="final_report_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="final_report_files/libs/quarto-html/anchor.min.js"></script>
 <link href="final_report_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="final_report_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="final_report_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="final_report_files/libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="final_report_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="final_report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="final_report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="final_report_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="final_report_files/libs/bootstrap/bootstrap-04024d98dd357bb9fdc27c45f27003da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="final_report_files/libs/bootstrap/bootstrap-dark-a059cd785a54d942fe52cc116ee70b23.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="final_report_files/libs/bootstrap/bootstrap-04024d98dd357bb9fdc27c45f27003da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -81,10 +105,172 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="quarto-light">
+<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
   <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
@@ -111,10 +297,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#gender-parity-in-educational-participation-1" id="toc-gender-parity-in-educational-participation-1" class="nav-link" data-scroll-target="#gender-parity-in-educational-participation-1"><span class="header-section-number">4.3</span> <strong><em>Gender Parity in Educational Participation</em></strong></a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="final_report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -233,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.5" class="anchored" data-anchor-id="exporting-final-dataset"><span class="header-section-number">2.5</span> Exporting Final Dataset</h2>
 <p>The final long-format dataset used for analysis was saved as <code>data/wdi_edu_filtered_long.csv</code>.</p>
 <p>Here is summary statistics for the variables we have across all regions from 2000-2020:</p>
-<div id="44c4362b" class="cell" data-execution_count="1">
+<div id="9d7a2220" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -251,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE year BETWEEN 2000 AND 2020</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY series;</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>, conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -342,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="growth-across-education-levels-by-region" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="growth-across-education-levels-by-region"><span class="header-section-number">3.1</span> Growth Across Education Levels by Region</h2>
 <p>This table reports the average annual growth in primary, secondary, and tertiary school enrollment rates for each world region between 2000 and 2020. Growth rates are calculated as the year-to-year change in enrollment values, and then averaged over the 20-year period to capture longer-term regional trends. Positive values indicate that enrollment has generally increased over time, while negative values reflect declining or stagnant progress. Comparing growth across regions and education levels highlights where expansion in access to schooling has been fastest and where progress has been more limited.</p>
-<div id="45939215" class="cell" data-execution_count="2">
+<div id="5413ce7f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.read_sql(<span class="st">'''</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">WITH growth AS (</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT</span></span>
@@ -371,7 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY region</span></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY region;</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>, conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
@@ -568,11 +758,11 @@ Figure&nbsp;9
 </section>
 <section id="enrollment-convergence-relative-to-the-world-average" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="enrollment-convergence-relative-to-the-world-average"><span class="header-section-number">4.2</span> <strong><em>Enrollment Convergence Relative to the World Average</em></strong></h2>
-<p>Line graphs of regional enrollment trajectories show substantial convergence at the primary level (@fig-primary). Most regions began the period below or above the global average but moved closer to it over time, driven by widespread improvement in basic education. Convergence weakened at the secondary level (@fig-secondary-line), where disparities persisted between higher-performing regions (Latin America &amp; Caribbean, East Asia &amp; Pacific) and those lagging behind (South Asia, the Middle East, North Africa, Afghanistan &amp; Pakistan, Sub-Saharan Africa). At the tertiary level (@fig-tertiary-line), divergence was pronounced: Latin America &amp; Caribbean and East Asia &amp; Pacific expanded rapidly, while other regions improved only modestly, widening global inequalities in higher education access. Bar plots corroborate these trends. Primary convergence was strongest for Sub-Saharan Africa and East Asia &amp; Pacific (@fig-primary-bar), whereas secondary convergence was driven mainly by South Asia (@fig-secondary-bar). At the tertiary level, only South Asia showed measurable convergence; all other regions diverged from the global trend (@fig-tertiary-bar).</p>
+<p>Line graphs of regional enrollment trajectories show substantial convergence at the primary level. Most regions began the period below or above the global average but moved closer to it over time, driven by widespread improvement in basic education. Convergence weakened at the secondary level, where disparities persisted between higher-performing regions (Latin America &amp; Caribbean, East Asia &amp; Pacific) and those lagging behind (South Asia, the Middle East, North Africa, Afghanistan &amp; Pakistan, Sub-Saharan Africa). At the tertiary level, divergence was pronounced: Latin America &amp; Caribbean and East Asia &amp; Pacific expanded rapidly, while other regions improved only modestly, widening global inequalities in higher education access. Bar plots corroborate these trends. Primary convergence was strongest for Sub-Saharan Africa and East Asia &amp; Pacific, whereas secondary convergence was driven mainly by South Asia. At the tertiary level, only South Asia showed measurable convergence; all other regions diverged from the global trend.</p>
 </section>
 <section id="gender-parity-in-educational-participation-1" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="gender-parity-in-educational-participation-1"><span class="header-section-number">4.3</span> <strong><em>Gender Parity in Educational Participation</em></strong></h2>
-<p>Primary-level GPI values indicate near-universal movement toward gender parity across regions (@fig-gpi-primary). By 2020, nearly all regions fall within the near-parity band (0.97–1.03). Secondary-level GPI trends show partial convergence (@fig-gpi-secondary), with Latin America &amp; Caribbean consistently favoring girls and East Asia &amp; Pacific reaching parity by the mid-2000s. In contrast, South Asia and Sub-Saharan Africa remain slightly below parity throughout, despite clear upward trajectories. At the tertiary level, gender disparities widen across regions (@fig-gpi-tertiary). Latin America &amp; Caribbean and East Asia &amp; Pacific display strong female advantage, while Sub-Saharan Africa remains far below parity, indicating persistent and structural barriers preventing women’s participation in higher education.</p>
+<p>Primary-level GPI values indicate near-universal movement toward gender parity across regions. By 2020, nearly all regions fall within the near-parity band (0.97–1.03). Secondary-level GPI trends show partial convergence, with Latin America &amp; Caribbean consistently favoring girls and East Asia &amp; Pacific reaching parity by the mid-2000s. In contrast, South Asia and Sub-Saharan Africa remain slightly below parity throughout, despite clear upward trajectories. At the tertiary level, gender disparities widen across regions. Latin America &amp; Caribbean and East Asia &amp; Pacific display strong female advantage, while Sub-Saharan Africa remains far below parity, indicating persistent and structural barriers preventing women’s participation in higher education.</p>
 <p>The results show that while educational access has expanded worldwide, progress has been uneven across levels and regions. Primary schooling exhibits the strongest convergence, with nearly all regions approaching the world average by 2020. And this reflects the effectiveness of global initiatives aimed at universalizing basic education.</p>
 <p>In contrast, secondary enrollment shows more limited convergence. Although regions such as Latin America &amp; Caribbean and East Asia &amp; Pacific maintain high participation, South Asia, the Middle East, North Africa, Afghanistan &amp; Pakistan, and Sub-Saharan Africa continue to lag behind. These persistent disparities highlight structural barriers, such as financial constraints, limited school capacity, and gendered labor expectations, that become more pronounced in adolescence.</p>
 <p>Tertiary education displays the greatest divergence. Rapid expansion in East Asia &amp; Pacific and Latin America &amp; Caribbean has widened global inequalities, while other regions show much slower progress, suggesting that higher education remains closely tied to national economic capacity and long-term policy investment.</p>
@@ -583,11 +773,35 @@ Figure&nbsp;9
 <h1 data-number="5"><span class="header-section-number">5</span> Conclusion</h1>
 <p>Our project examined regional enrollment growth, convergence toward global averages, and gender parity across primary, secondary, and tertiary education from 2000 to 2020. The findings show clear global progress at the foundational level: primary enrollment has expanded broadly, and most regions now achieve gender parity. However, disparities widen as education levels advance. Secondary enrollment shows mixed convergence, and tertiary education exhibits significant divergence, with only a few regions experiencing rapid expansion. Gender inequalities follow a similar pattern. While primary-level parity is nearly universal, gaps persist at the secondary level and become especially pronounced in tertiary schooling, particularly in Sub-Saharan Africa. We think results highlight that early access to education has improved substantially, but equal opportunities for advancement remain uneven. The trends suggest that achieving global education equity requires shifting attention from universal primary schooling toward strengthening secondary and tertiary systems, reducing structural barriers, and ensuring equitable gender pathways across all levels of education!</p>
 </section>
+<section id="references" class="level1 unnumbered" data-number="6">
 
-</main>
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">6 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-worldbank_documents_api" class="csl-entry" role="listitem">
+World Bank. (2024a). <em>World bank documents &amp; reports API portal</em>. <a href="https://documents.worldbank.org/en/publication/documents-reports/api">https://documents.worldbank.org/en/publication/documents-reports/api</a>
+</div>
+<div id="ref-worldbank_databank_wdi" class="csl-entry" role="listitem">
+World Bank. (2024b). <em>World development indicators (WDI) DataBank</em>. <a href="https://databank.worldbank.org/source/world-development-indicators">https://databank.worldbank.org/source/world-development-indicators</a>
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

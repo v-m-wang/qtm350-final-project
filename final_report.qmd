@@ -9,6 +9,14 @@ format:
   html:
     toc: true
     number-sections: true
+    theme:
+      light: minty      
+      dark: darkly      
+    toc-location: left    
+    fig-cap-location: bottom  
+    tbl-cap-location: top    
+    fontsize: 1.09em
+    linestretch: 1.7
   pdf:
     toc: true
     number-sections: true
@@ -19,6 +27,9 @@ execute:
   cache: false
 bibliography: references.bib
 csl: apa.csl
+nocite: |
+  @worldbank_databank_wdi
+  @worldbank_documents_api
 ---
 
 # Introduction
@@ -236,3 +247,4 @@ Gender parity patterns reinforce these trends. While most regions reach near par
 
 Our project examined regional enrollment growth, convergence toward global averages, and gender parity across primary, secondary, and tertiary education from 2000 to 2020. The findings show clear global progress at the foundational level: primary enrollment has expanded broadly, and most regions now achieve gender parity. However, disparities widen as education levels advance. Secondary enrollment shows mixed convergence, and tertiary education exhibits significant divergence, with only a few regions experiencing rapid expansion. Gender inequalities follow a similar pattern. While primary-level parity is nearly universal, gaps persist at the secondary level and become especially pronounced in tertiary schooling, particularly in Sub-Saharan Africa. We think results highlight that early access to education has improved substantially, but equal opportunities for advancement remain uneven. The trends suggest that achieving global education equity requires shifting attention from universal primary schooling toward strengthening secondary and tertiary systems, reducing structural barriers, and ensuring equitable gender pathways across all levels of education!
 
+# References
