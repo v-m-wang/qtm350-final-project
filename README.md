@@ -50,7 +50,7 @@ pip install -r requirements.txt
 ```
 ---
 
-## **How to Run the Analysis**
+## **How to Run the Analyses**
 
 ### 1. Data Cleaning
 
@@ -71,7 +71,7 @@ Run the Jupyter notebook:
 ```bash
 scripts/wdi_edu_analysis.ipynb
 ```
-This notebook performs the various summary statistics...
+This notebook loads the cleaned data into a SQLITE database (`wdi_edu.db`) and performs a series of preliminary SQL-based analyses on global education indicators.
 
 ### 3. Convergence & Statistical Analysis
 
@@ -80,8 +80,8 @@ Run the following notebooks:
 scripts/"Education Convergence Analysis.ipynb"
 scripts/"Gender Gap Analysis.ipynb"
 ```
-
 Computed visualizations are stored in the `figures/` folder.
+
 ---
 
 ## **Render the Final Quarto Report**
@@ -106,7 +106,8 @@ quarto render final_report.qmd --to pdf
 
 - Set the working directory to the project root before running notebooks.  
 - PDF rendering requires LaTeX installed.  
-- All figures are generated from the `.ipynb` notebooks in `/scripts`.  
+- All figures are generated from the `.ipynb` notebooks in `/scripts`. 
+- Ensure have same Python dependencies using `requirements.txt` file before running notebooks.
 
 ---
 
